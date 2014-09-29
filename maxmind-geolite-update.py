@@ -3,7 +3,7 @@
 """maxmind-geolite-update: Updates the MaxMind geo IP databases"""
 
 # Standard command-line imports
-import os, sys, optparse
+import os, sys, optparse, shutil
 import ConfigParser
 import datetime
 import urllib2
@@ -69,7 +69,7 @@ def controller():
 
             # Finally move the unzipped file, overwriting the old one
             final_file = os.path.join(destination_dir, local_file)
-            os.rename(unzipped_file, final_file)
+            shutil.move(unzipped_file, final_file)
 
             # Created notification message, print and send to HipChat if poss
             notification = "Updated MaxMind database file %s" % final_file
